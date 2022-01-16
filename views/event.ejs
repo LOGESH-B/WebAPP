@@ -1,0 +1,14 @@
+<%- layout("boiler")-%>
+
+<%- include("nav")-%>
+<%- include("clubnav")-%>
+<% console.log("poda",foundevent) %> 
+
+<div class="container  justify-content-center">
+    <h1><%=foundevent.eventname%> </h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid doloribus illo provident voluptatibus officiis dicta recusandae ducimus, exercitationem numquam nostrum. Voluptatibus magnam tempore non, earum illo voluptas beatae natus? Voluptatibus, aliquam natus iure illum vitae eaque saepe, aspernatur corrupti laborum, placeat consequuntur commodi harum obcaecati. Totam id quia molestiae obcaecati corporis, facilis animi aperiam itaque! Velit unde, accusamus accusantium sunt voluptas alias porro, consectetur quam quod excepturi doloribus esse maxime dolorum! Tenetur quaerat nihil nam voluptatibus quam debitis et
+         itaque ipsum sint, consequuntur possimus minima mollitia officiis impedit corrupti natus, ex repellat aspernatur, ad dolores excepturi? Magnam totam sunt non eligendi atque reiciendis delectus. Quos fuga ducimus maiores nostrum ratione iste nobis esse nam incidunt illum possimus accusamus, architecto quas debitis corporis repellat animi! Dignissimos nemo quis unde ratione facere aspernatur officia cupiditate aperiam repudiandae dolorum? Aliquam facere natus assumenda. Ducimus, quae nostrum sapiente eius fugit dolorum sequi numquam alias vero fuga praesentium nulla cupiditate veritatis quam voluptate? Ad, minima ab iure non tempore minus voluptatem cupiditate fuga quasi repudiandae perspiciatis distinctio doloremque, voluptas deleniti. Dolorem, natus molestiae aspernatur unde asperiores pariatur accusantium debitis, commodi exercitationem aperiam saepe veritatis neque id. Ab illo debitis laborum iste alias cum minus deserunt.</p>
+         <form  action="/club/<%=clubname%>/<%=foundevent._id %>/register" method="get">
+            <button class="btn btn-sm btn-success">Register</button>
+          </form>
+</div>

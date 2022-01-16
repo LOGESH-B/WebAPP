@@ -1,0 +1,21 @@
+
+<%- layout("boiler")-%>
+
+<%- include("nav")-%>
+<%- include("clubnav")-%>
+
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <h2 class="my-4">Sign Up</h2>
+        <form action="/signUp" method="post">
+            <input type="text" id="name" class="fadeIn second  px-3 m-3" name="name" placeholder="Enter Your Name">  
+            <input type="email" id="username" class="fadeIn second  px-3 m-3" name="username" placeholder="Enter Mail ID">
+            <input type="text" id="RollNumber" class="fadeIn second  px-3 m-3" name="rollno" placeholder="Enter your Roll Number">
+            <input type="text" id="department" class="fadeIn second  px-3 m-3" name="department" placeholder="Enter your Department">
+            <input type="text" id="member" class="fadeIn second  px-3 m-3" name="member" placeholder="Team Member Name ">
+            <input type="submit" class="fadeIn fourth" value="REGISTER">
+          </form>
+          
+    </div>
+  </div>

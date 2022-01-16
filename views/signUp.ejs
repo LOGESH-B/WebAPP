@@ -1,0 +1,24 @@
+
+<%- layout("boiler")-%>
+<%- include("nav")-%>
+<link rel="stylesheet" href="css/login.css">
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <h2 class="my-4">Sign Up</h2>
+          <form action="/signUp" method="post">
+            <input type="text" id="name" class="fadeIn second  px-3 m-3" name="name" placeholder="Enter Your Name">  
+            <input type="email" id="username" class="fadeIn second  px-3 m-3" name="username" placeholder="Enter Mail ID">
+            <input type="text" id="RollNumber" class="fadeIn second  px-3 m-3" name="rollno" placeholder="Enter your Roll Number">
+            <input type="text" id="department" class="fadeIn second  px-3 m-3" name="department" placeholder="Enter your Department">
+
+            <input type="password" id="password" class="fadeIn third px-3 m-3" name="password" placeholder="Enter Password">
+            <input type="password" id="password" class="fadeIn third px-3 m-3" name="confirm_password" placeholder="Confirm Password">
+            <input type="submit" class="fadeIn fourth" value="Sign Up">
+          </form>
+          <div id="formFooter">
+        <a class="underlineHover" href="./login">LogIn</a>
+          </div>
+    </div>
+  </div>
+
+  

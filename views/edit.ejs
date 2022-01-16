@@ -1,0 +1,21 @@
+<%-layout("boiler")-%> 
+<%- include("nav")-%> 
+<% console.log(foundevent) %> 
+<div class="container">
+    <form action="/club/<%=clubname%>/<%=foundevent._id%>/edit?_method=PUT" method="post">
+        <label for="eventname" class="form-label">Event Name</label>
+        <input type="text" class="form-control" name="eventname" id="eventname" value="<%=foundevent.eventname%> ">
+        <label for="eventdate" class="form-label">Event Date</label>
+        <input type="text" class="form-control" name="eventdate" id="eventdate" value="<%=foundevent.eventdate%> ">
+        <label for="enddate" class="form-label">End Date</label>
+        <div class="mb-3">
+            <label for="formFileMultiple" class="form-label">Choose Image</label>
+            <input class="form-control" type="file" id="formFileMultiple" name="image" multiple>
+        </div>
+        <input type="text" class="form-control" name="enddate" id="enddate" value="<%=foundevent.enddate%> ">
+        <label for="eventdiscription" class="form-label">Event Discription</label>
+        <textarea name="eventdiscription" class="form-control" id="eventdiscription" cols="30" rows="8"><%=foundevent.eventdiscription%></textarea>
+        <button type="submit" class="btn btn-success">Edit</button>
+    </form>
+
+</div>

@@ -51,13 +51,10 @@ app.use(session({
   app.use(methodOverride('_method'))
   app.engine('ejs',ejsMate)
 
-<<<<<<< HEAD
-  // mongoose.connect("mongodb://localhost:27017/userDB");
-  mongoose.connect("mongodb+srv://logesh:logeshb.20it@cluster0.e7qad.mongodb.net/userDB");
-=======
-//  mongoose.connect("mongodb+srv://logesh:logeshb.20it@cluster0.e7qad.mongodb.net/userDB");
 
->>>>>>> d98d57703eb3439e2c145357d0192a4075748197
+  
+  mongoose.connect("mongodb+srv://logesh:logeshb.20it@cluster0.e7qad.mongodb.net/userDB");
+
 
 passport.use(new localStrategy(User.authenticate()));
   passport.use(User.createStrategy());

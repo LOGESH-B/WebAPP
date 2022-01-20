@@ -4,7 +4,7 @@ const Club = require("../modules/club");
 
 module.exports.isAuthor = async (req, res, next) => {
     
-    const admin="61e9688096dc46aff35756b2"
+    const admin="61e9a02c0a2ffa3f420cf4bf"
     if(!(admin==req.user._id))
     {
         return res.redirect("/") 

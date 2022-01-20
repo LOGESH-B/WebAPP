@@ -6,126 +6,109 @@
 <%- include("clubnav")-%>
 
 
-
+<link rel="stylesheet" href="/css/event.css">
 <%console.log('hii'+ found) %> 
-<% console.log(found.author) %> 
-<% console.log(currentUser._id) %> 
+<div class="club-card" style="color: white;">
+<div class="container">
+<h1 class="text-center py-3 head "><%=found.clubname%> </h1>
+<p class="text-center"><%=found.discription%></p>
+  
+  
+  <h3 class="text-center mt-5 head">Events </h3>
+  <hr>
+  
+</div>
+
  
- 
- <div class="container d-flex ">
- <% for(let event of found.events){ %>
- 
-  <div class="card " style="width: 18rem;">
+<div class="container">
+<ul class="cards ">
+  <div class="row d-flex justify-content-center">
+    <% if (found.events.length!=0) { %>
+    
+  <% for(let event of found.events){ %>
    
-    
-    <div class="card-body">
-      <form action="/club/<%=found.clubname%>/<%= event._id%>" method="get">
-     
-        <% console.log("boii",event._id) %> 
-      <h5 class="card-title"><%= event.eventname  %> </h5>
-      <p class="card-text"><%= event.eventdiscription  %></p>
-      <p class="text-muted"><%= event.eventdate %></p>
-      <p class="text-muted"><%= event.enddate %></p>
-      <button type="submit" class="btn btn-info">View Event</button>
-
-    </form>
-    
-      <div class="d-flex ">
+      <div class="col-lg-4 ">
+    <li>
+      <form action="/club/<%=found.clubname%>/<%= event._id%>" class="card events" method="get">
+        <% for(let img of event.images) { %>
+          <img src="<%=img.url%> " class="card__image"/>
         
-        <% if (found.author.equals(currentUser._id)) { %>
-
-          <form action="/club/<%=found.clubname%>/<%=event._id %>/edit" method="get">
-            <button class="btn btn-sm btn-primary" >Edit</button>
-          </form>
-          
-          <form  action="/club/<%=found.clubname%>/<%=event._id %>/delete?_method=DELETE" method="post">
-            <button class="btn btn-sm btn-danger" >Delete</button>
-          </form>
-         
         <% } %>
         
+        <div class="card__overlay">
+          <div class="card__header">
+            <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>    
+            <% for(let img of found.images) { %>
+              <img class="card__thumb" src="<%=img.url%>" alt="" />
+            
+            <% } %>                 
+            
+            <div class="card__header-text">
+              <h3 class="card__title"><%= event.eventname  %></h3>     
+              <span class="card__status"><%= event.eventdate %> |</span>       
+              <span class="card__status"><%= event.enddate %></span>
+            </div>
+          </div>
+          <p class="card__description"><button type="submit" class="btn  view"  >View Event</button></p>
+          
+        </div>
+        
     
-    </div>
-    </div>
-  </div>
-
-  <% } %>  
-  <% if (found.author.equals(currentUser._id)) { %>
-  <div class="container justify-content-center"> 
-    <form action="/club/<%=found.clubname%>/add" method="get">
-    <button class="btn btn-success btn-md" >ADD Event</button>
-  </form>
+      </form>     
+    </li>
   </div>
   <% } %>
+  <% }else { %>
+ 
+    <h1 class="" style="color: rgb(204, 196, 196);">Coming soon
+      <div class="spinner-grow text-light" style="height: 1rem;width: 1rem;" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="spinner-grow text-light" style="height: 1rem;width: 1rem;" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="spinner-grow text-light" style="height: 1rem;width: 1rem;" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </h1>
+    <% } %>
+   
+</div>
+  </ul>
+  <% found.author.forEach(element => { %>
+    <% if (element==currentUser.username) { %>
+      <form action="/newclub" method="get">
+        <a href="/club/<%=found.clubname%>/add" class="float" >
+          <i class="fa fa-plus my-float"></i>
+          </a>
+        
+      </form>
+  
+      <% } %> 
+   
+  <% }) %>
+
+ 
+
 
 </div>
-<!-- <ul class="cards">
-  
-    <li>
-      <a href="" class="card events">
-        <img src="https://m.media-amazon.com/images/I/61qbQwxyJbS._SY550_.jpg" class="card__image" alt="" />
-        <div class="card__overlay">
-          <div class="card__header">
-            <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                     
-            <img class="card__thumb" src="..." alt="" />
-            <div class="card__header-text">
-              <h3 class="card__title">Jessica Parker</h3>            
-              <span class="card__status">1 hour ago</span>
-            </div>
-          </div>
-          <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, blanditiis?</p>
-        </div>
-      </a>      
-    </li>
-    <li>
-      <a href="" class="card events">
-        <img src="https://m.media-amazon.com/images/I/61qbQwxyJbS._SY550_.jpg" class="card__image" alt="" />
-        <div class="card__overlay">        
-          <div class="card__header">
-            <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                 
-            <img class="card__thumb" src="https://i.imgur.com/sjLMNDM.png" alt="" />
-            <div class="card__header-text">
-              <h3 class="card__title">kim Cattrall</h3>
-              <span class="card__status">3 hours ago</span>
-            </div>
-          </div>
-          <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, blanditiis?</p>
-        </div>
-      </a>
-    </li>
-    <li>
-      <a href="" class="card events">
-        <img src="https://i.imgur.com/oYiTqum.jpg" class="card__image" alt="" />
-        <div class="card__overlay">
-          <div class="card__header">
-            <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                     
-            <img class="card__thumb" src="..." alt="" />
-            <div class="card__header-text">
-              <h3 class="card__title">Jessica Parker</h3>
-              <span class="card__tagline">Lorem ipsum dolor sit amet consectetur</span>            
-              <span class="card__status">1 hour ago</span>
-            </div>
-          </div>
-          <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, blanditiis?</p>
-        </div>
-      </a>
-    </li>
-    <li>
-      <a href="" class="card events">
-        <img src="https://i.imgur.com/2DhmtJ4.jpg" class="card__image" alt="" />
-        <div class="card__overlay">
-          <div class="card__header">
-            <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                 
-            <img class="card__thumb" src="https://i.imgur.com/sjLMNDM.png" alt="" />
-            <div class="card__header-text">
-              <h3 class="card__title">kim Cattrall</h3>
-              <span class="card__status">3 hours ago</span>
-            </div>          
-          </div>
-          <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, blanditiis?</p>
-        </div>
-      </a>
-    </li>    
-  </ul> -->
 
+<div class="container mt-5 pb-5">
+  <hr>
+  <h3 class="text-center mt-5 head">Support</h3>
+  <div class="row pt-5 d-flex justify-content-around text-center">
+    <div class="col-lg-6">
+      <h5 > <span class="fw-bold">Staff-Coordinator :<br></span><span> <%=found.stfcoordinators%> </span></h5>
+      <h6 >Contact: <%=found.author[0]%></h6>
+    </div>
+    <div class="col-lg-6">
+      <h5><span class="fw-bold">Student-Coordinator : <br></span><span > <%=found.stucoordinators%> </span></h5>
+      <h6>Contact: <%=found.author[1]%></h6>
+    </div>
+  </div>
+</div>
+
+<%- include("footer") -%> 
+
+</div>
  

@@ -5,23 +5,34 @@ const Register = require('./register');
 
 const clubSchema=new mongoose.Schema({
     clubname:{
-
-        type: String,
-        required: true
+        type: String,  
     },
     events: [{type: mongoose.Schema.Types.ObjectId, ref: 'Event'}],
-    author: {
-        type: mongoose.Schema.Types.ObjectId,
+    author: [{
+        type: String,
         required: true
-    }
+    }],
+    stucoordinators: {
+        type: String
+    },
+    stfcoordinators:{
+        type: String
+    },
+    clublogo: {
+        url: String,
+        filename: String
+      },
+
+      images: [{
+        url: String,
+        filename: String
+      }],
+      discription: {
+          type: String
+      }
     
     
 });
 
 const Club = new mongoose.model("Club", clubSchema);
-const club=new Club({
-    clubname: "Cultural Club",
-    author:"61e0455aff4b576c56019975"
-})
-//club.save()
 module.exports=Club;

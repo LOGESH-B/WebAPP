@@ -2,155 +2,87 @@
 <%- include("nav")-%>
 <%- include("clubnav")-%>
 
-<link rel="stylesheet" href="css/event.css">
-<div class="container justify-content-center">
+<%console.log(found)%> 
+<div class="para  align-middle "  >
+  <div class=" p-4" style="text-align: center;">
+    <h1 class="mt-5 welcome">Welcome!</h1>
+    <p class="qouts">"To achieve great things, two things are needed: a plan, and not quite enough time"</p>
+      <a href="/#allclub" ><button class="btn homebtn mt-4" >Explore</button></a>
+  </div>
+  
+
+</div>
+
+<div class="club-back">
+  <section id="allclub">
+<div class="container p-5">
+  <h1 class="text-center head">Clubs</h1>
+  <hr>
+</div>
+<div class="container p-3 "style="color:white ;">
+  
+<% for( let club of found) { %>
+  <div class="card mb-5    card-each" >
+    <div class="row g-0 d-flex justify-content-center">
+      <div class="col-md-4 img">
+        <% club.images.forEach(element => { %>
+          <img height="189px"    
+          width="300px" src="<%=element.url %>" class="img-fluid rounded-start" alt="...">   
+        <% }) %>
+        
+      </div>
+      
+      <div class="col-md-8 card-club">  
+        <form action="/club/<%=club.clubname%>" method="get">   
+        <div class="card-body">
+          <h5 class="card-title fw-bold"><%=club.clubname%> </h5>
+          <p class="card-text"><%=club.discription.slice(0, 150)%>... </p>
+         
+          <button type="submit" class="btn homebtn mt-3">View More</button>
+        </div>
+      </form>
+      
+      </div>
+    
+    </div>
+  </div>
+    
+
+<% } %>
+</div>
+  </section>
+
+
+<% if ("61e9688096dc46aff35756b2"==currentUser._id) { %>
+  <%console.log("Podaaa",currentUser.username)%>
+  
+  <form action="/newclub" method="get">
+    <a href="/newclub" class="float" >
+      <i class="fa fa-plus my-float"></i>
+      </a>
+    
+  </form>
  
-
-
-    <div class="card mb-3" >
-<div class="row g-0">
-  <div class="col-md-4 img-top">
-    <!-- <img src="https://m.media-amazon.com/images/I/61qbQwxyJbS._SY550_.jpg "   class="img-fluid rounded-start img-top" alt="..."> -->
-  </div>
-  
-  <div class="col-md-8 card-club">  
-    <a href="/club/SDC">
-    <div class="card-body">
-      <h5 class="card-title fw-bold">SDC</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>
-  </a>
-  </div>
-
-</div>
-</div>
-<div class="card mb-3" >
-<div class="row g-0">
-  
-  <div class="col-md-8 card-club">
-    <a href="/club/Photography Club">
-    <div class="card-body ">
-      <h5 class="card-title fw-bold">Photography Club</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>
-  </a>
-  </div>
-
-  <div class="col-md-4 img-top">
-    <!-- <img src="..." class="img-fluid rounded-start" alt="..."> -->
-  </div>
+<% } %>
+<section id="about" class="container p-4">
+  <h1 class="text-center head">About</h1>
+  <hr>
+<p class="text-center pb-5 mb-5"style="color:white ;">      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus maiores velit, cumque fugit, tempore ducimus voluptates itaque unde rerum quam quae nisi doloribus nobis quidem eius sit praesentium dolorem molestiae at. Saepe quo cupiditate voluptatibus illo ullam nihil voluptatem ab tempora omnis, quam iure, eum dicta sed. Esse velit veritatis recusandae a sint cum nostrum maiores, dolorum asperiores in nemo ali
+    quam similique expedita. Debitis facere harum suscipit illo pariatur voluptate! Adipisci commodi nobis obcaecati labore, laudantium voluptatem numquam quis. Eaque nihil sit repudiandae a magnam quos beatae! Rem earum ea repudiandae! Iusto voluptatem corporis reiciendis asperiores aliquam aliquid sint soluta voluptates eum itaque cumque ex, at qui voluptate debitis dolores reprehenderit voluptatibus iure rem atque. Soluta necessitatibus maxime illum quae consequatur deleniti unde provident sed neque, cupiditate nobis non totam fugit dolorem optio harum a officia voluptas accusamus velit voluptatem itaque. Eveniet vel iusto nemo iste laudantium! Ad, iusto quas odio eius est, earum fuga voluptate quasi omnis eligendi cumque exercitationem incidunt! Odit nemo dolorem nesciunt nostrum, vel ea quos tempora qui voluptatum ratione aut praesentium cumque blanditiis totam nobis distinctio. Hic velit neque rem soluta temporibus sequi. Consectetur consequatur id possimus fugiat placeat unde sequi cupiditate voluptatum optio aut!</p>
+</section>
+<div class="container pb-5">
+ <div class="row social d-flex justify-content-center">
+   <div class="col-sm-4 d-flex justify-content-center">
+    <a href="https://twitter.com/"style="color: white;"><i class="fab fa-twitter fs-3" > </i></a>
+   </div>
+   <div class="col-sm-4 d-flex justify-content-center">
+   <a href="https://facebook.com/"style="color: white;"> <i class="fab fa-facebook fs-3"></i></a>
+   </div>
+   <div class="col-sm-4 d-flex justify-content-center">
+    <a href="https://instagram.com/"style="color: white;"><i class="fab fa-instagram fs-3"></i></a>
+   </div>
+ </div>
 </div>
 </div>
 
-<div class="card mb-3">
-<div class="row g-0">
-  <div class="col-md-4 img-top">
-    <!-- <img src="..." class="img-fluid rounded-start" alt="..."> -->
-  </div>
-  
-  <div class="col-md-8 card-club">
-    <a href="/club/Cultural Club">
-    <div class="card-body">
-      <h5 class="card-title fw-bold">Cultural Club</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>
-  </a>
-  </div>
-
-  
-</div>
-</div>
-<div class="card mb-3" >
-<div class="row g-0">
- 
-  <div class="col-md-8 card-club">
-    <a href="/club/Android Application Development Club">
-    <div class="card-body">
-      <h5 class="card-title fw-bold">Android Application Development Club</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>
-  </a>
-  </div>
-
-  <div class="col-md-4 img-top">
-    <!-- <img src="..." class="img-fluid rounded-start" alt="..."> -->
-  </div>
-</div>
-</div>
-
-
-</div>
-
-<ul class="cards">
-  
-  <li>
-    <a href="" class="card events">
-      <img src="https://m.media-amazon.com/images/I/61qbQwxyJbS._SY550_.jpg" class="card__image" alt="" />
-      <div class="card__overlay">
-        <div class="card__header">
-          <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                     
-          <img class="card__thumb" src="..." alt="" />
-          <div class="card__header-text">
-            <h3 class="card__title">Jessica Parker</h3>            
-            <span class="card__status">1 hour ago</span>
-          </div>
-        </div>
-        <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, blanditiis?</p>
-      </div>
-    </a>      
-  </li>
-  <li>
-    <a href="" class="card events">
-      <img src="https://m.media-amazon.com/images/I/61qbQwxyJbS._SY550_.jpg" class="card__image" alt="" />
-      <div class="card__overlay">        
-        <div class="card__header">
-          <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                 
-          <img class="card__thumb" src="https://i.imgur.com/sjLMNDM.png" alt="" />
-          <div class="card__header-text">
-            <h3 class="card__title">kim Cattrall</h3>
-            <span class="card__status">3 hours ago</span>
-          </div>
-        </div>
-        <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, blanditiis?</p>
-      </div>
-    </a>
-  </li>
-  <li>
-    <a href="" class="card events">
-      <img src="https://i.imgur.com/oYiTqum.jpg" class="card__image" alt="" />
-      <div class="card__overlay">
-        <div class="card__header">
-          <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                     
-          <img class="card__thumb" src="..." alt="" />
-          <div class="card__header-text">
-            <h3 class="card__title">Jessica Parker</h3>
-            <span class="card__tagline">Lorem ipsum dolor sit amet consectetur</span>            
-            <span class="card__status">1 hour ago</span>
-          </div>
-        </div>
-        <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, blanditiis?</p>
-      </div>
-    </a>
-  </li>
-  <li>
-    <a href="" class="card events">
-      <img src="https://i.imgur.com/2DhmtJ4.jpg" class="card__image" alt="" />
-      <div class="card__overlay">
-        <div class="card__header">
-          <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                 
-          <img class="card__thumb" src="https://i.imgur.com/sjLMNDM.png" alt="" />
-          <div class="card__header-text">
-            <h3 class="card__title">kim Cattrall</h3>
-            <span class="card__status">3 hours ago</span>
-          </div>          
-        </div>
-        <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, blanditiis?</p>
-      </div>
-    </a>
-  </li>    
-</ul>
-
+<%- include("footer") -%> 

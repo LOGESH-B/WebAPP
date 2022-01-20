@@ -1,13 +1,30 @@
 
 <%- layout("boiler")-%>
 <%- include("nav")-%>
+
+
+<link rel="stylesheet" href="css/preloader.css">
+<div id="preloader">
+  <div class="container1">  
+    <img src="https://static.wixstatic.com/media/dea926_fc1e0f87b7314fc9be94826a3460252e.gif"></img>
+  </div>
+  <div class="part1 ">
+    Transform Yourself
+  </div> 
+
+  <div class="loader">
+    <div class="loading">
+    </div>
+  </div>
+</div>
 <link rel="stylesheet" href="css/login.css">
+
  <div class="wrapper fadeInDown">
     <div id="formContent">
         <h2 class="my-4">Log In</h2>
-          <form action="/login" method="post">
-            <input type="email" id="email" class="fadeIn second  px-3" name="username" placeholder="Enter Mail ID">
-            <input type="password" id="password" class="fadeIn third px-3 m-3" name="password" placeholder="Enter Password">
+          <form action="/login" class="needs-validation" method="post" novalidate>
+            <input type="email" id="email" class="fadeIn second  px-3 form-control" name="username" placeholder="Enter Mail ID" required>
+            <input type="password" id="password" class="fadeIn third px-3 m-3 form-control" name="password" placeholder="Enter Password" required>
             <input type="submit" class="fadeIn fourth" value="Log In">
           </form>
           <div id="formFooter">
@@ -15,4 +32,18 @@
           </div>
     </div>
   </div>
+
   
+  <%- include("footer") -%> 
+  
+  <script src="/js/validation.js"></script>
+  
+  
+  <script>
+    let spinnerWrapper = document.querySelector('#preloader');
+  
+    window.addEventListener('load', function () {
+         spinnerWrapper.style.display = 'none';
+        spinnerWrapper.parentElement.removeChild(spinnerWrapper);
+    });
+  </script>

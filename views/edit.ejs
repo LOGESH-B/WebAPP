@@ -1,21 +1,24 @@
 <%-layout("boiler")-%> 
 <%- include("nav")-%> 
 <% console.log(foundevent) %> 
-<div class="container">
-    <form action="/club/<%=clubname%>/<%=foundevent._id%>/edit?_method=PUT" method="post">
-        <label for="eventname" class="form-label">Event Name</label>
-        <input type="text" class="form-control" name="eventname" id="eventname" value="<%=foundevent.eventname%> ">
-        <label for="eventdate" class="form-label">Event Date</label>
-        <input type="text" class="form-control" name="eventdate" id="eventdate" value="<%=foundevent.eventdate%> ">
-        <label for="enddate" class="form-label">End Date</label>
-        <div class="mb-3">
-            <label for="formFileMultiple" class="form-label">Choose Image</label>
-            <input class="form-control" type="file" id="formFileMultiple" name="image" multiple>
-        </div>
-        <input type="text" class="form-control" name="enddate" id="enddate" value="<%=foundevent.enddate%> ">
-        <label for="eventdiscription" class="form-label">Event Discription</label>
-        <textarea name="eventdiscription" class="form-control" id="eventdiscription" cols="30" rows="8"><%=foundevent.eventdiscription%></textarea>
-        <button type="submit" class="btn btn-success">Edit</button>
-    </form>
+<link rel="stylesheet" href="/css/login.css">
 
-</div>
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <h2 class="my-4">EDIT</h2>
+          <form action="/club/<%=clubname%>/<%=foundevent._id%>/edit?_method=PUT" class="needs-validation" method="post" novalidate>
+            <input type="text" class="fadeIn second  px-3 m-3 form-control mb-3" name="eventname"  value="<%=foundevent.eventname%>" placeholder="Event Name" required>
+            <input type="text" class="fadeIn second  px-3 m-3 form-control mb-3" name="eventdate"  value="<%=foundevent.eventdate%>" placeholder="Event Date" required>
+           
+            <input type="text" class="fadeIn second  px-3 m-3 form-control mb-3" name="enddate"  value="<%=foundevent.enddate%>" placeholder="Event Time" required>
+          
+            <textarea name="eventdiscription"  class="fadeIn second  px-3  form-control" style="margin-left: 35px;"  id="area" cols="20" rows="5" placeholder="Discription" required><%=foundevent.eventdiscription%></textarea>
+           
+        
+            <input type="submit" class="fadeIn fourth" value="Edit">
+          </form>
+
+    </div>
+  </div>
+  <%- include("footer") -%> 
+<script src="/js/validation.js"></script>

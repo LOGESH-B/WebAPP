@@ -3,12 +3,37 @@
 <%- include("nav")-%>
 <%- include("clubnav")-%>
 <% console.log("poda",foundevent) %> 
-
-<div class="container  justify-content-center">
-    <h1><%=foundevent.eventname%> </h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid doloribus illo provident voluptatibus officiis dicta recusandae ducimus, exercitationem numquam nostrum. Voluptatibus magnam tempore non, earum illo voluptas beatae natus? Voluptatibus, aliquam natus iure illum vitae eaque saepe, aspernatur corrupti laborum, placeat consequuntur commodi harum obcaecati. Totam id quia molestiae obcaecati corporis, facilis animi aperiam itaque! Velit unde, accusamus accusantium sunt voluptas alias porro, consectetur quam quod excepturi doloribus esse maxime dolorum! Tenetur quaerat nihil nam voluptatibus quam debitis et
-         itaque ipsum sint, consequuntur possimus minima mollitia officiis impedit corrupti natus, ex repellat aspernatur, ad dolores excepturi? Magnam totam sunt non eligendi atque reiciendis delectus. Quos fuga ducimus maiores nostrum ratione iste nobis esse nam incidunt illum possimus accusamus, architecto quas debitis corporis repellat animi! Dignissimos nemo quis unde ratione facere aspernatur officia cupiditate aperiam repudiandae dolorum? Aliquam facere natus assumenda. Ducimus, quae nostrum sapiente eius fugit dolorum sequi numquam alias vero fuga praesentium nulla cupiditate veritatis quam voluptate? Ad, minima ab iure non tempore minus voluptatem cupiditate fuga quasi repudiandae perspiciatis distinctio doloremque, voluptas deleniti. Dolorem, natus molestiae aspernatur unde asperiores pariatur accusantium debitis, commodi exercitationem aperiam saepe veritatis neque id. Ab illo debitis laborum iste alias cum minus deserunt.</p>
-         <form  action="/club/<%=clubname%>/<%=foundevent._id %>/register" method="get">
-            <button class="btn btn-sm btn-success">Register</button>
+<div class="event-container">
+<div class="container  p-5  "style="color:white">
+    <h1 class="text-center head pb-5"><%=foundevent.eventname%> </h1>
+    <p class="text-center"><%=foundevent.eventdiscription%></p>
+         <form  action="/club/<%=found.clubname%>/<%=foundevent._id %>/register" class="d-flex justify-content-center pb-4"  method="get">
+            <button class="btn btn-lg btn-success mt-4">Register</button>
           </form>
+          <div class="d-flex justify-content-between">
+            <% found.author.forEach(element => { %>
+            
+            <% if (element==currentUser.username) { %>
+    
+         <a href="/club/<%=found.clubname%>/<%=foundevent._id %>/registered" class="float1" >
+            <i class="fas fa-tasks my-float"></i>    
+          </a>
+          <form  action="/club/<%=found.clubname%>/<%=foundevent._id %>/delete?_method=DELETE" method="post">
+            <button class="btn btn-sm btn-danger float2" type="submit" >
+              <i class="fas fa-trash  "></i>
+             </button>
+          </form>
+
+          
+          
+          
+          <a href="/club/<%=found.clubname%>/<%=foundevent._id %>/edit" class="float3" >
+            <i class="fas fa-pen-square my-float"></i>             
+          </a>    
+          <% } %> 
+          <% }) %> 
+        </div>
 </div>
+</div>
+<%- include("footer") -%> 
+

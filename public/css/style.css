@@ -1,30 +1,217 @@
-.nav-tab :hover{
-    background-color:darkgrey ;
-    
-   }
+.nav-tab :hover  {
+  background-image: linear-gradient(to bottom right,#cc2b5e, #753a88);
+  color: white;
    
+   }
+
+   /* nav{
+     background-color: #47d7fc;
+   } */
+   nav{
+    /* background-color: rgb(120, 163, 228); */
+    background-color: #1c445c;
+    
+}
+b{
+  
+    
+    background: -webkit-linear-gradient(#ff0051, #bf00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+ 
+}
+.welcome{
+  font-family: 'Dancing Script', cursive;  
+}
+.head{
+  color: white;
+  font-family: 'Megrim', cursive;
+  font-weight: bolder;
+}
+.qouts{
+  font-family: 'Preahvihear', sans-serif;
+  font-size:xx-large;
+  padding: 20px 50px; 
+}
+.navbar-light .navbar-brand,.navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover{
+  letter-spacing: 1px;
+  color: white;
+}
+.club-back{
+  background-image: url("https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+  .card{
+    box-shadow: rgba(59, 59, 80, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  }
    .nav-head{
       /*  position:sticky; */
        top: 0;
-       background-color:rgb(197, 226, 235);
+       /* background-color:rgb(227, 247, 253); */
+       background-image: linear-gradient(to bottom right, #48b1bf,#2b5c81);
+     
        
    }
-   .nav-link{
-     color: black;
+   .navbar-light .navbar-nav .nav-link {
+     color: white;
+     letter-spacing: 2px;
+     
    }
+   .navbar-light .navbar-nav .nav-link:hover{
+     color: white;
+   }
+   .nav-link{
+     color: white;
+   }
+   .social>*{
+     width: 100px;
+   }
+   .img-fluid {
+    width: 300px;
+    height: 189px;
+}
    
-   .img-top{
-     height: 250px;
-     width: 300px;
-    background-image:url("/image/images/IIc.jpeg") ;
+   .img{
+    /* background-image:url("/image/images/IIc.jpeg") ; */
     background-repeat: no-repeat;
    
    }
    .card-club a{
-     color: black;
+     color: white;
      text-decoration: none;
    }
    
+ 
+ 
+  .footer1{
+    background-color: #1c445c;
+    color: white;
+    bottom: 0px;
+    width: 100%;
+    position: absolute;
    
-   
-   
+   }
+   footer{
+    background-color: #1c445c;
+    color: white;
+   }
+   .homebtn{
+    background-image: linear-gradient(to bottom right,#cc2b5e, #753a88);
+    color:#FFF ;
+    border-radius: 10px;
+   }
+   #homebtn:hover{
+    box-shadow: rgba(247, 247, 247, 0.25) 0px 50px 100px -20px, rgba(255, 255, 255, 0.3) 0px 30px 60px -30px;
+   }
+
+
+  .para{
+    /* background-image: url("https://images.unsplash.com/photo-1522158637959-30385a09e0da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGV2ZW50fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"); */
+   background-image: url("https://media.istockphoto.com/photos/blue-textured-background-picture-id1169630303?b=1&k=20&m=1169630303&s=170667a&w=0&h=fVO3J3fsBjTuukcuSC6k69nUrhHGJWKGifcCGS-X8oE=");
+  /* Set a specific height */
+  min-height: 500px;
+  color: white;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  }
+
+  *{padding:0;margin:0;}
+
+.my-color{
+  z-index: 10;
+}
+
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+  background-image: linear-gradient(to bottom right,#4568dc, #b06ab3);
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+}
+.card-each{
+  background-image: linear-gradient(to bottom right, #48b1bf,#2b5c81);
+}
+
+.my-float{
+	margin-top:22px;
+}
+.float1{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-image: linear-gradient(to bottom right,#4568dc, #b06ab3);
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+}
+.float2{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:110px;
+	right:40px;
+	background-image: linear-gradient(to bottom right,#4568dc, #b06ab3);
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+}
+.float2:hover{
+  
+  background-image: none;
+}
+.float3{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:180px;
+	right:40px;
+  background-image: linear-gradient(to bottom right,#4568dc, #b06ab3);
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+}
+
+.underlineHover:after {
+  display: block;
+  left: 0;
+  bottom: -10px;
+  width: 0;
+  height: 2px;
+  background-image: linear-gradient(to bottom right,#cc2b5e, #753a88);
+  content: "";
+  transition: width 0.2s;
+}
+
+.underlineHover:hover {
+  color: #0d0d0d;
+}
+
+.underlineHover:hover:after{
+  width: 100%;
+}
+
+
+.event-container{
+  background-image: url("https://images.unsplash.com/photo-1483401757487-2ced3fa77952?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fGJsYWNrfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

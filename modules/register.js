@@ -8,7 +8,8 @@ const registeSchema=new mongoose.Schema({
     rollno:{
       type: String,
 
-      unique: true
+
+     
     },
     department: {
       type: String,
@@ -16,15 +17,15 @@ const registeSchema=new mongoose.Schema({
     },
   username: {
     type: String,
-    
     unique: true
+    
     },
     member: {
         type: String,
     },
     userid:{
-        type: mongoose.Schema.Types.ObjectId,
-        required: true
+        type: mongoose.Schema.Types.ObjectId
+    
 
     }
 })

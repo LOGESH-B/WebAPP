@@ -1,9 +1,13 @@
 /* ............card css ........ */
 :root {
-    --surface-color: rgb(120, 163, 228);
+    --surface-color: rgb(95 104 210);
     --curve: 40;
   }
-  
+  .view{
+    background-image: linear-gradient(to bottom right,#cc2b5e, #753a88);
+    color: white;
+    border-radius: 10px;
+  }
   * {
     box-sizing: border-box;
   }
@@ -12,7 +16,9 @@
     font-family: 'Noto Sans JP', sans-serif;
     background-color: #fef8f8;
   }
-  
+  .cards li{
+    width: 300px;
+  }
   .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -26,7 +32,7 @@
   .events {
     position: relative;
     display: block;
-    height: 100%;  
+    
     border-radius: calc(var(--curve) * 1px);
     overflow: hidden;
     text-decoration: none;
@@ -36,7 +42,9 @@
     width: 100%;
     height: auto;
   }
-  
+  .row>*{
+    width: auto;
+  }
   .card__overlay {
     position: absolute;
     bottom: 0;
@@ -47,6 +55,16 @@
     background-color: var(--surface-color);      
     transform: translateY(100%);
     transition: .2s ease-in-out;
+  }
+  .flex-wrap{
+    width: 100%;
+  }
+  .club-card{
+    background-image: url("https://images.unsplash.com/photo-1519608487953-e999c86e7455?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
+    background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   }
   
   .events:hover .card__overlay {
@@ -120,4 +138,7 @@
     -webkit-line-clamp: 3;
     overflow: hidden;
   }    
+  .card{
+    background-color: transparent;
+  }
   

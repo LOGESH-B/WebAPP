@@ -1,6 +1,7 @@
 body {
     font-family: "Poppins", sans-serif;
     height: 100vh;
+    background-image: url("https://images.unsplash.com/photo-1578364249730-0c4ee16426fa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80");
   }
   
   a {
@@ -15,7 +16,7 @@ body {
     font-weight: 600;
     display:inline-block;
     margin: 40px 8px 10px 8px; 
-    color: #9b9b9b;
+    color: black;
   }
 
   .wrapper {
@@ -31,7 +32,7 @@ body {
   #formContent {
     -webkit-border-radius: 10px 10px 10px 10px;
     border-radius: 10px 10px 10px 10px;
-    background: #fff;
+    background-image: linear-gradient(to bottom right, #48b1bf,#2b5c81);
     padding: 30px;
     width: 90%;
     max-width: 450px;
@@ -93,9 +94,15 @@ body {
     -ms-transform: scale(0.95);
     transform: scale(0.95);
   }
+  .form-control{
+    width: 85%;
+    margin-left: 10px;
+    background-color: #b0dae2;
+    color: black ;
+  }
   
-  input[type=email],input[type=password],input[type=text] {
-    background-color: #f6f6f6;
+  input[type=email],input[type=password],input[type=text],textarea {
+    background-color: #b0dae2;
     border: none;
     color: #0d0d0d;
     padding: 15px 32px;
@@ -105,7 +112,7 @@ body {
     font-size: 16px;
     margin: 5px;
     width: 85%;
-    border: 2px solid #f6f6f6;
+    
     -webkit-transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
     -ms-transition: all 0.5s ease-in-out;
@@ -116,13 +123,13 @@ body {
 
   }
   
-  input[type=email]:focus,input[type=password]:focus,input[type=text]:focus {
-    background-color: #fff;
+  input[type=email]:focus,input[type=password]:focus,input[type=text]:focus,textarea:focus {
+    background-color: #fff ;
     border-bottom: 2px solid #5fbae9;
   }
   
-  input[type=email]:placeholder,input[type=password]:placeholder,input[type=text]:placeholder {
-    color: #cccccc;
+  input[type=email]::placeholder,input[type=password]::placeholder,input[type=text]::placeholder,textarea::placeholder{
+    color: black;
   }
   
   .fadeInDown {

@@ -1,26 +1,54 @@
-<div class="nav-head">
+
+
+
+
+<div class="nav-head ">
     <ul class="nav justify-content-around ">
-      <li class="nav-item nav-tab">
-        <a class="nav-link active" aria-current="page" href="/club/SDC" value="SDC">SDC</a>
-      </li>
-      <li class="nav-item nav-tab">
-        <a class="nav-link" href="/club/Photography Club" value="Photography Club">Photography Club</a>
-      </li>
-      <li class="nav-item nav-tab">
-        <a class="nav-link" href="/club/Cultural Club">Cultural Club</a>
-      </li>
-      <li class="nav-item nav-tab">
-        <a class="nav-link" href="/club/Android Application Development Club">Android Application Development Club</a>
-      </li>
-      <li class="nav-item nav-tab">
-        <a class="nav-link" href="/club/English Proficiency Club">English Proficiency Club</a>
-      </li>
-      <li class="nav-item nav-tab">
-        <a class="nav-link" href="/club/Srinivasa Ramanujan Mathematics Club">Srinivasa Ramanujan Mathematics Club</a>
-      </li>
-      <li class="nav-item nav-tab">
-        <a class="nav-link" href="/club/Tamil Mandram">Tamil Mandram</a>
-      </li>
+      <% for( let clubnames of club ) { %>
+        <li class="nav-item nav-tab ">
+          
+         
+          <a class="nav-link active" aria-current="page" href="/club/<%=clubnames.clubname%>" value="<%=clubnames.clubname%>"><%=clubnames.clubname%></a>
+        </li>
+      
+      <% } %>
+      
+    
 
     </ul>
   </div>
+  <!-- <ul class="nav nav-pills mb-3 justify-content-around" id="pills-tab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <form action="/club/SDC"  class="nav-link " id="pills"   method="get" >
+        <input type="submit" class="bg-transparent border-0"    data-bs-toggle="pill" data-bs-target="#pills-profile"  role="tab" aria-controls="pills-profile" aria-selected="false" value="SDC"/>
+      </form>
+    <button class="nav-link " id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">SDC</button>
+    </li>
+    <form action="/club/SDC " class="nav-item"   method="get" >
+    <li class="nav-link " id="pills-profile-tab" role="presentation">
+      
+     <button   id="pills-profile-tab" class="bg-transparent border-0" data-bs-toggle="pill" data-bs-target="#pills-profile" type="submit" role="tab" aria-controls="pills-profile" aria-selected="false">Photography Club</button>
+    
+    </li>
+  </form>
+    <li class="nav-item" role="presentation">
+    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="submit" role="tab" aria-controls="pills-contact" aria-selected="false">Cultural Club</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Android Application Development Club</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">English Proficiency Club</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Srinivasa Ramanujan Mathematics Club</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Tamil Mandram</button>
+    </li>
+  </ul> -->
+ 
+    
+
+
+  

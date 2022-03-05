@@ -1,9 +1,8 @@
-
 <%- layout("boiler")-%>
 <%- include("nav")-%>
 <%- include("flash")-%>
 
-<link rel="stylesheet" href="css/preloader.css">
+<link rel="stylesheet" href="/css/preloader.css">
 <div id="preloader">
   <div class="container1">  
     <img src="https://static.wixstatic.com/media/dea926_fc1e0f87b7314fc9be94826a3460252e.gif"></img>
@@ -17,19 +16,16 @@
     </div>
   </div>
 </div>
-<link rel="stylesheet" href="css/login.css">
+<link rel="stylesheet" href="/css/login.css">
 
  <div class="wrapper fadeInDown">
     <div id="formContent">
-        <h2 class="my-4">Log In</h2>
-          <form action="/login" class="needs-validation" method="post" novalidate>
-            <input type="email" id="email" class="fadeIn second  px-3 form-control" name="username" placeholder="Enter Mail ID" required>
-            <input type="password" id="password" class="fadeIn third px-3 m-3 form-control" name="password" placeholder="Enter Password" required>
-            <input type="submit" class="fadeIn fourth" value="Log In">
+        <h2 class="my-4">RESET</h2>
+          <form action="/forgotten-password" class="needs-validation" method="post" novalidate>
+            <input type="email" id="email" class="fadeIn second  px-3 form-control" name="email" placeholder="Enter Mail ID" required>
+            <input type="submit" class="fadeIn fourth" value="RESET">
           </form>
-          <div id="formFooter">
-        <a class="underlineHover" href="/forgotten-password">Forgot Password?</a>
-          </div>
+        
     </div>
   </div>
 

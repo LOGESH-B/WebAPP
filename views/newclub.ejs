@@ -1,12 +1,12 @@
 <%- layout("boiler")-%>
 <%- include("nav")-%>
-
+<%- include("flash")-%>
 <link rel="stylesheet" href="css/login.css">
 
 <div class="wrapper fadeInDown">
     <div id="formContent">
         <h2 class="my-4">NEW CLUB</h2>
-          <form action="/newclub" method="post" class="needs-validation" enctype="multipart/form-data" novalidate>
+          <form action="/newclub" method="post" class="needs-validation" enctype="multipart/form-data"  novalidate>
             <input type="text" id="name" class="fadeIn second  px-3 m-3 form-control" name="clubname" placeholder="CLUB NAME" required>  
             <input type="text" id="name" class="fadeIn second  px-3 m-3 form-control" name="stfcoordinators" placeholder="Staff Co-Ordinator" required>
             <input type="email" id="name" class="fadeIn second  px-3 m-3 form-control" name="stfemail" placeholder="Staff Email" required>  
@@ -14,10 +14,8 @@
             <input type="email" id="name" class="fadeIn second  px-3 m-3 form-control" name="stuemail" placeholder="Student Email" required>
             <textarea name="discription"  class="fadeIn second  px-3  form-control" style="margin-left: 35px;"  id="area" cols="20" rows="5" placeholder="Discription" required></textarea>
             <input class="form-control fadeIn second  px-2 my-3" type="file" style="margin-left: 35px;" name="image" placeholder="Choose Image" multiple required> 
-           
             <input type="submit" class="fadeIn fourth" value="Creat">
           </form>
-
     </div>
   </div>
   <%- include("footer") -%> 

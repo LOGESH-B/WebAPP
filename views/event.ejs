@@ -3,13 +3,23 @@
 <%- include("nav")-%>
 <%- include("clubnav")-%>
 <% console.log("poda",foundevent) %> 
-<div class="event-container">
+<% let a=0 %> 
+<div class="event-container" style="min-height: 100vh;">
 <div class="container  p-5  "style="color:white">
     <h1 class="text-center head pb-5"><%=foundevent.eventname%> </h1>
     <p class="text-center"><%=foundevent.eventdiscription%></p>
-         <form  action="/club/<%=found.clubname%>/<%=foundevent._id %>/register" class="d-flex justify-content-center pb-4"  method="get">
-            <button class="btn btn-lg btn-success mt-4">Register</button>
-          </form>
+    <% for(let event of foundevent.register) { %>
+      <% if (event.username===currentUser.username) { %> 
+        <% a=1 %> 
+      <% } %>
+    <% } %>
+    <% if (a!=1) { %>
+      <form  action="/club/<%=found.clubname%>/<%=foundevent._id %>/register" class="d-flex justify-content-center pb-4"  method="get">
+            <button class="btn btn-lg btn-success mt-4">Register</button>   
+      </form>  
+    <% } else{%>
+      <h4 class="text-center">Already Registered!</h4>
+      <% } %>        
           <div class="d-flex justify-content-between">
             <% found.author.forEach(element => { %>
             

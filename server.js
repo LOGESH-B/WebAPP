@@ -13,13 +13,19 @@ const methodOverride = require('method-override')
 const User=require("./modules/user")
 const Club=require("./modules/club")
 const Event=require("./modules/event")
+const Token = require("./modules/token");
 const Register=require("./modules/register")
 const path=require("path")
+const flash = require('connect-flash');
+const Joi = require("joi");
+const passwordComplexity = require("joi-password-complexity");
+const bcrypt = require("bcrypt"); 
+const crypto = require("crypto");
 
 const {isAuthor,isLoggedIn,isClubAuthor} = require("./middleware/auth");
 
 
-
+const sendEmail=require("./public/js/mail.js")
 
 const multer = require('multer');
 const { storage } = require('./clodinary');
@@ -32,6 +38,7 @@ const passport = require("passport");
 const localStrategy=require("passport-local")
 
 const req = require('express/lib/request');
+const { cookie, redirect } = require('express/lib/response');
  
 
 const app = express()
@@ -43,21 +50,26 @@ app.use(express.static(path.join(__dirname,"/public")))
 app.use(session({
     secret: "Our little secret.",
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie:{
+      expires: Date.now()+1000*60*60*24*7,
+      maxAge:1000*60*60*24*7
+    }
   }));
+  app.use(flash());
  
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(methodOverride('_method'))
   app.engine('ejs',ejsMate)
 
-<<<<<<< HEAD
-  // mongoose.connect("mongodb://localhost:27017/userDB");
+
+   //mongoose.connect("mongodb://localhost:27017/userDB");
   mongoose.connect("mongodb+srv://logesh:logeshb.20it@cluster0.e7qad.mongodb.net/userDB");
-=======
+
 //  mongoose.connect("mongodb+srv://logesh:logeshb.20it@cluster0.e7qad.mongodb.net/userDB");
 
->>>>>>> d98d57703eb3439e2c145357d0192a4075748197
+
 
 passport.use(new localStrategy(User.authenticate()));
   passport.use(User.createStrategy());
@@ -69,6 +81,8 @@ passport.use(new localStrategy(User.authenticate()));
       res.locals.currentUser=req.user;
       const clubs=await Club.find({})
       res.locals.club=clubs;
+      res.locals.success=req.flash('success');
+      res.locals.error=req.flash('error');
       
       next()
     })
@@ -93,7 +107,8 @@ app.get("/",isLoggedIn,(req,res)=>{
     
 app.get("/logout", function(req, res){
      req.logout();
-     res.redirect("/");
+     req.flash("success",'Successfully Logged Out')
+     res.redirect("/login");
   });
     
     
@@ -105,8 +120,7 @@ app.get("/club/:clubname",isLoggedIn,(req,res)=>{
   
     console.log(req.params.clubname);
      Club.findOne({clubname: req.params.clubname}).populate('events').then(found=>{ 
-       console.log("poda",found)
-      
+       console.log("poda",found)    
     res.render('eventcard', {found});
      })   
     });      
@@ -119,12 +133,11 @@ app.post("/newclub",isLoggedIn,isAuthor,upload.array('image'),async(req,res)=>{
    const authors=[req.body.stfemail,req.body.stuemail,req.user.username]
    
   const club=new Club(req.body)
-  console.log("1",club)
   club.author=authors;
-  console.log("2",club)
   club.images=req.files.map(f => ({ url: f.path, filename: f.filename }));
   console.log("looo",club.images)
   await club.save();
+  req.flash('success','Club Created Successfully!')
   res.redirect("/")
 })
   app.get("/club/:clubname/add",isLoggedIn,isClubAuthor,(req,res)=>{
@@ -143,7 +156,8 @@ app.post("/newclub",isLoggedIn,isAuthor,upload.array('image'),async(req,res)=>{
      Club.findOne({clubname},async(err,foundclub)=>{
        await foundclub.events.push(event);
        await event.save();
-       await foundclub.save();   
+       await foundclub.save(); 
+       req.flash('success','Event Created Successfully');
       res.redirect(`/club/${clubname}`)
      })
    
@@ -178,6 +192,7 @@ app.post("/newclub",isLoggedIn,isAuthor,upload.array('image'),async(req,res)=>{
     console.log("jiii")
     if(!err)
     {
+      req.flash('success','Event Edited Successfully');
       res.redirect(`/club/${clubname}`)
     }
     else{
@@ -200,6 +215,7 @@ app.delete("/club/:clubname/:eventid/delete",isLoggedIn,isClubAuthor,async(req,r
         await Register.findByIdAndDelete(reg);
 
       }
+      req.flash('success','Event Deleted Successfully');
       res.redirect(`/club/${clubname}`)
     }
 })
@@ -220,6 +236,7 @@ app.post("/club/:clubname/:eventid/register",isLoggedIn,(req,response)=>{
     await foundevent.register.push(register);
     await register.save()
     await foundevent.save()
+    req.flash('success','Registered Successfully');
     response.redirect(`/club/${clubname}`)
   })
   
@@ -231,10 +248,9 @@ app.get("/club/:clubname/:eventid",isLoggedIn,(req,res)=>{
   console.log("hiiii",req.params.eventid)
   Club.findOne({clubname: clubname},(err,found)=>{
     if(!err){
-    Event.findById(req.params.eventid,(err,foundevent)=>{
-      console.log(foundevent)
-      res.render("event",{foundevent,found})
-    })
+     Event.findById(req.params.eventid).populate('register').then(foundevent=>{
+        res.render("event",{foundevent,found})
+      })
   }
 
   })
@@ -262,8 +278,10 @@ app.get("/signUp",(req,res)=>{
 
 
 app.post('/login',
-  passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/login' }));
+  passport.authenticate('local', { failureFlash: true,failureRedirect: '/login' }),(req,res)=>{
+    req.flash('success','Successfully Logged In!');
+    res.redirect('/');
+  });
 
 
  app.get("/eventcard",isLoggedIn,(req,res)=>{
@@ -271,27 +289,153 @@ app.post('/login',
     res.render('eventcard');
 })
  
+require("./public/js/passport")(passport);
 
-app.post("/signUp",(req,res)=>{
+app.post("/signUp",async(req,res)=>{
   if(req.body.password===req.body.confirm_password)
   {
-  console.log(req.body.password)
-    User.register({username: req.body.username,name: req.body.name,rollno: req.body.rollno,department: req.body.department}, req.body.password, function(err, user){
-        if (err) {
-          console.log(err);
-          res.redirect("/signUp");
-        } else {
-          passport.authenticate("local")(req, res, function(){
-            res.redirect("/");
-          });
-        }
+    
+      bcrypt.genSalt(Number(process.env.SALT), async (err, salt)=> {
+        if(err){req.flash('error',err.message)}  
+        bcrypt.hash(req.body.password, salt, async (err, hash)=> {
+          try {
+            const user=await new User(req.body);
+            user.password=hash;
+            await user.save();  
+            passport.authenticate("local")(req, res, function(){
+              res.redirect("/");
+            }); 
+          }
+          catch (error) {
+            console.log(error);
+            if(error.code==11000){
+              req.flash('error',"Roll Number/Mail ID Already Exits");
+              res.redirect("/signUp");
+            }
+            else{
+              req.flash('error',error.message);
+            res.redirect("/signUp");
+            }
+          }
+         
+          // Store hash in database here
+        });
       });
+   console.log(req.body.password)
+   
+    // User.register({username: req.body.username,name: req.body.name,rollno: req.body.rollno,department: req.body.department}, req.body.password, function(err, user){
+    //     if (err) {
+    //       console.log(err);
+    //       if(err.code==11000){
+    //         req.flash('error',"Roll Number Already Exits");
+    //         res.redirect("/signUp");
+    //       }
+    //       else{
+    //         req.flash('error',err.message);
+    //       res.redirect("/signUp");
+    //       }
+          
+    //     } else {
+    //       passport.authenticate("local")(req, res, function(){
+    //         res.redirect("/");
+    //       });
+    //     }
+    //   });
     }
     else{    
+      req.flash('error','Password and confirm Password Not Match!');
       res.redirect("/signUp")
     }
   
 })
+
+app.get("/forgotten-password",(req,res)=>{
+  res.render("reset")
+})
+app.get("/forgotten-password/:userId/:token",(req,res)=>{
+  const {userId,token}=req.params;
+  res.render("change_password",{userId,token})
+})
+
+app.post("/forgotten-password", async (req, res) => {
+  
+  try {
+      const schema = Joi.object({ email: Joi.string().email().required() });
+      const { error } = schema.validate(req.body);
+      if (error) return res.status(400).send(error.details[0].message);
+      const user = await User.findOne({ username: req.body.email });
+      if (!user)
+          return res.status(400).send(  
+            req.flash('error',"User With Given Email Doesn't Exist"),
+          res.redirect('/forgotten-password'));
+      let token = await Token.findOne({ userId: user._id });
+      if (!token) {
+          token = await new Token({
+              userId: user._id,
+              token: crypto.randomBytes(32).toString("hex"),
+          }).save();
+      }
+      const link = `http://localhost:3000/forgotten-password/${user._id}/${token.token}`;
+      await sendEmail.sendEmail(user.username, "Oru Password Niyabagam vechika mudiyala ni lam yethu valthukittu....savula sethapayale", link);
+
+      res.send(
+        req.flash('success',"Password Reset Link Sent To Your Email Account"),
+      res.redirect('/login')
+      );
+  } catch (error) {
+      res.send("An error occured");
+      console.log(error);
+  }
+ 
+});
+
+
+app.post("/forgotten-password/:userId/:token", async (req, res) => {
+  if(req.body.password===req.body.confirm_password)
+  {
+  try {
+    
+
+    const user = await User.findOne({ _id: req.params.userId });
+    if (!user) return res.status(400).send(
+      req.flash('error',"Invalid Link"),
+      res.redirect('/login')
+    )
+    const token = await Token.findOne({
+      userId: user._id,
+      token: req.params.token,
+    });
+    if (!token) return res.status(400).send( 
+      req.flash('error',"Invalid Link"),
+    res.redirect('/login')
+    );
+    if (!user.verified) user.verified = true;
+
+    const salt = await bcrypt.genSalt(Number(process.env.SALT));
+    const hashPassword = await bcrypt.hash(req.body.password, salt);
+    
+    user.password=hashPassword;
+    
+    await user.save();
+    await token.remove();
+    res.status(200).send(
+      req.flash('success',"Password Reset successfully"),
+    res.redirect('/login'));
+  } catch (error) {
+    res.status(500).send({ message: "Internal Server Error" });
+  }
+}
+else{    
+  req.flash('error','Password and confirm Password Not Match!');
+  res.redirect(`/forgotten-password/${req.params.userId}/${req.params.token}`)
+}
+
+});
+
+
+
+
+
 
 app.get("/pre",(req,res)=>{
   res.render("preloader")

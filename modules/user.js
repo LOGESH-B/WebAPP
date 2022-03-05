@@ -24,6 +24,7 @@ const passportLocalMongoose = require("passport-local-mongoose");
   password: {
     type: String,
     
+    
     }
 });
 userSchema.plugin(passportLocalMongoose);

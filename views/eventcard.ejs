@@ -27,7 +27,7 @@
     
   <% for(let event of found.events){ %>
    
-      <div class="col-lg-4 ">
+      <div class="col-lg-4 p-4">
     <li>
       <form action="/club/<%=found.clubname%>/<%= event._id%>" class="card events" method="get">
         <% for(let img of event.images) { %>

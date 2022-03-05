@@ -64,10 +64,16 @@ app.use(session({
   app.engine('ejs',ejsMate)
 
 
+
    //mongoose.connect("mongodb://localhost:27017/userDB");
-  mongoose.connect("mongodb+srv://logesh:logeshb.20it@cluster0.e7qad.mongodb.net/userDB");
+ // mongoose.connect("mongodb+srv://logesh:logeshb.20it@cluster0.e7qad.mongodb.net/userDB");
 
 //  mongoose.connect("mongodb+srv://logesh:logeshb.20it@cluster0.e7qad.mongodb.net/userDB");
+
+
+
+  
+  mongoose.connect("mongodb+srv://logesh:logeshb.20it@cluster0.e7qad.mongodb.net/userDB");
 
 
 

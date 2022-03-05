@@ -63,7 +63,7 @@ app.use(session({
   app.use(methodOverride('_method'))
   app.engine('ejs',ejsMate)
 
-
+ // mongodb+srv://logesh:logeshb.20it@cluster0.e7qad.mongodb.net/userDB?retryWrites=true&w=majority
 
    //mongoose.connect("mongodb://localhost:27017/userDB");
  // mongoose.connect("mongodb+srv://logesh:logeshb.20it@cluster0.e7qad.mongodb.net/userDB");
@@ -73,7 +73,7 @@ app.use(session({
 
 
   
-  mongoose.connect("mongodb+srv://logesh:logeshb.20it@cluster0.e7qad.mongodb.net/userDB");
+  mongoose.connect("mongodb+srv://logesh:logeshb.20it@cluster0.e7qad.mongodb.net/userDB?retryWrites=true&w=majority");
 
 
 

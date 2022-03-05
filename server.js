@@ -381,7 +381,7 @@ app.post("/forgotten-password", async (req, res) => {
               token: crypto.randomBytes(32).toString("hex"),
           }).save();
       }
-      const link = `http://localhost:3000/forgotten-password/${user._id}/${token.token}`;
+      const link = `https://app-kec-webapp.herokuapp.com/forgotten-password/${user._id}/${token.token}`;
       await sendEmail.sendEmail(user.username, "Oru Password Niyabagam vechika mudiyala ni lam yethu valthukittu....savula sethapayale", link);
 
       res.send(

@@ -389,7 +389,7 @@ app.post("/forgotten-password", async (req, res) => {
       res.redirect('/login')
       );
   } catch (error) {
-      res.send("An error occured");
+      res.send(error);
       console.log(error);
   }
  

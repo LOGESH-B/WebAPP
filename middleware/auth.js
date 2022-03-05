@@ -5,7 +5,7 @@ const Club = require("../modules/club");
 module.exports.isAuthor = async (req, res, next) => {
     
 
-    const admin="620f2281964cadf729be5283"
+    const admin="6222fd694c4337abcac0bcdc"
 
     if(!(admin==req.user._id))
     {
